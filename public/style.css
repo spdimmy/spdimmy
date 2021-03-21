@@ -1,0 +1,69 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+}
+
+h1 {
+    font-size: 99px;
+    font-family: 'problems', sans-serif;
+    color: #444;
+}
+
+.fun-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.fun-block__title {
+    padding: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.fun-block__title--step-2 {
+    animation: wowBounce 0.7s ease-out;
+}
+
+.fun-block__title--step-3-active {
+    color: red;
+}
+
+.fun-block__title--step-2,
+.fun-block__title--step-3 {
+    pointer-events: none;
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 38px;
+    }
+}
+
+@media screen and (pointer: fine) {
+    .fun-block__title:hover {
+        color: red;
+    }
+}
+
+/* Step 2, text 'NO!' */
+@keyframes wowBounce {
+    0% {
+        color: red;
+    }
+
+    20% {
+        transform: scale(5);
+        color: red;
+    }
+
+    100% {
+        transform: scale(1);
+        color: #444444;
+    }
+}
