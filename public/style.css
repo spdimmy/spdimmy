@@ -1,3 +1,7 @@
+:root {
+    --header-height:60px;
+}
+
 * {
     box-sizing: border-box
 }
@@ -13,6 +17,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0;
+    overscroll-behavior-y: contain;
 }
 
 h1 {
@@ -21,12 +26,31 @@ h1 {
     color: #444;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: #333;
+}
+
 .fun-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
     text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.15s ease-out;
+    z-index: 10;
 }
 
 .fun-block__title {
@@ -40,7 +64,7 @@ h1 {
 }
 
 .fun-block__title--step-3 {
-    animation: wowBounceRotate 0.7s ease-out;
+    animation: wowBounceRotate 1.7s ease-out forwards;
 }
 
 .fun-block__title--step-3-active {
@@ -50,6 +74,66 @@ h1 {
 .fun-block__title--step-2,
 .fun-block__title--step-3 {
     pointer-events: none;
+}
+
+.fun-block:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.header {
+    position: fixed;
+    top: calc(-100% + var(--header-height));
+    left: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    background: #fbfbfb;
+    box-shadow: 0 1px 4px 2px #f1f1f1;
+    z-index: 50;
+}
+
+.header__container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    padding: 0 10px;
+}
+
+.header nav a {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.header__drag {
+    position: absolute;
+    top: 100%;
+    right: 4px;
+    padding: 6px;
+    cursor: grab;
+}
+
+.header__drag:active {
+    cursor: grabbing;
+}
+
+.header__drag-angle {
+    display: block;
+    font-size: 20px;
+    animation: flash 0.4s ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.header__drag-angle:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.header__drag-angle:nth-child(3) {
+    animation-delay: 0.4s;
 }
 
 @media screen and (max-width: 480px) {
@@ -81,6 +165,7 @@ h1 {
     }
 }
 
+/* Step 3, text '.!.' */
 @keyframes wowBounceRotate {
     0% {
         color: red;
@@ -92,7 +177,17 @@ h1 {
     }
 
     100% {
-        transform: scale(1) rotate(180deg) translateX(-100px);
+        transform: scale(1) rotate(360deg);
         color: #444444;
+    }
+}
+
+@keyframes flash {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
