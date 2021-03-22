@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function click() {
-      navigator.vibrate(80);
+      navigator.vibrate(40);
       update();
     }
 
@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Transit
       if (step === 2) {
+        navigator.vibrate(400);
         triggerElement.addEventListener('animationend', update);
       }
 
