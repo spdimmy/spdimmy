@@ -66,15 +66,20 @@ document.addEventListener('DOMContentLoaded', function () {
   (function () {
     const draggableEl = document.querySelector('.header');
     const dragTrigger = document.querySelector('.header__drag');
+    const secretArea = document.querySelector('.header__secret');
     const headerHeight = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
 
     let isDragged = false;
     let startPosition = null;
+    let prevPosition = null;
+    let currentPosition = null;
 
     let vibrateDistance = 0;
 
-    function updateTranslate(top) {
-      draggableEl.style.transform = `translateY(${top}px) translateY(-${headerHeight})`;
+    let dragDirection = null;
+
+    function updateTranslate() {
+      draggableEl.style.transform = `translateY(${currentPosition}px) translateY(-${headerHeight})`;
     }
 
     function dragStart(e) {
@@ -85,25 +90,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function dragEnd() {
       if (!isDragged) return;
+
       isDragged = false;
       startPosition = null;
-      draggableEl.style.transform = '';
-      draggableEl.style.transition = 'transform 0.5s ease-out';
       vibrateDistance = 0;
 
+      // Whether stick header to the end or not
+      currentPosition > window.innerHeight / (dragDirection === 'down' ? 4 : 1.3)
+          ? draggableEl.style.transform = `translateY(${window.innerHeight}px) translateY(-${headerHeight})`
+          : draggableEl.style.transform = ``;
+
+      draggableEl.style.transition = 'transform 0.5s ease-out';
       draggableEl.addEventListener('transitionend', () => draggableEl.style.transition = '');
     }
 
     function dragMove(e) {
       if (!isDragged) return;
 
-      const pos = e.clientY || e.touches[0].clientY;
-      updateTranslate(pos);
+      currentPosition = e.clientY || e.touches[0].clientY;
+      updateTranslate();
 
-      if (pos > vibrateDistance + 40) {
+      if (currentPosition > vibrateDistance + 40) {
         navigator.vibrate(30);
-        vibrateDistance = pos;
+        vibrateDistance = currentPosition;
       }
+
+      dragDirection = currentPosition > prevPosition ? 'down' : 'up';
+      prevPosition = currentPosition;
+
+      console.log(dragDirection);
+
+      // Show secret zone if drag more than 1/4
+      currentPosition > window.innerHeight / 4
+          ? secretArea.classList.add('header__secret--visible')
+          : secretArea.classList.remove('header__secret--visible');
     }
 
     dragTrigger.addEventListener('mousedown', dragStart, false);

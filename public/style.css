@@ -47,9 +47,10 @@ a {
     justify-content: center;
     flex-grow: 1;
     text-align: center;
-    visibility: hidden;
-    opacity: 0;
+    /*visibility: hidden;*/
+    /*opacity: 0;*/
     transition: opacity 0.15s ease-out;
+    overflow: hidden;
     z-index: 10;
 }
 
@@ -88,19 +89,38 @@ a {
     right: 0;
     height: 100%;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
     background: #fbfbfb;
     box-shadow: 0 1px 4px 2px #f1f1f1;
     z-index: 50;
 }
 
-.header__container {
+.header__secret {
     flex-grow: 1;
     display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.35s ease-out, opacity 0.35s ease-out;
+}
+
+.header__secret--visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.header__container {
+    flex-shrink: 0;
+    display: flex;
     align-items: center;
-    justify-content: space-between;
     height: var(--header-height);
     padding: 0 10px;
+}
+
+.header__logo {
+    flex-grow: 1;
 }
 
 .header nav a {
@@ -109,11 +129,10 @@ a {
 }
 
 .header__drag {
-    position: absolute;
-    top: 100%;
-    right: 4px;
-    padding: 6px;
+    font-size: 12px;
+    padding-left: 40px;
     cursor: grab;
+    user-select: none;
 }
 
 .header__drag:active {
@@ -122,7 +141,6 @@ a {
 
 .header__drag-angle {
     display: block;
-    font-size: 20px;
     animation: flash 0.4s ease-in-out;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -136,9 +154,47 @@ a {
     animation-delay: 0.4s;
 }
 
+.header--stick .header__drag {
+    transform: scale(1, -1);
+}
+
+.pokeball {
+    display: flex;
+    flex-direction: column;
+}
+
+.pokeball svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.pokeball__body {
+    transform: translateY(50px);
+    z-index: 5;
+}
+
+.pokeball__body svg {
+    animation: bounce 1s ease infinite;
+    transform-origin: bottom;
+}
+
+.pokeball__shadow {
+    flex-shrink: 0;
+}
+
+.pokeball__shadow svg {
+    animation: squeeze 1s ease infinite;
+    transform-origin: bottom;
+}
+
 @media screen and (max-width: 480px) {
     h1 {
         font-size: 38px;
+    }
+
+    .header__drag {
+        padding-left: 20px;
     }
 }
 
@@ -190,4 +246,24 @@ a {
     100% {
         opacity: 1;
     }
+}
+
+@keyframes bounce {
+    0%   { transform: scale(1,1)      translateY(0); }
+    10%  { transform: scale(1.1,.9)   translateY(0); }
+    30%  { transform: scale(.9,1.1)   translateY(-100px); }
+    50%  { transform: scale(1.05,.95) translateY(0); }
+    57%  { transform: scale(1,1)      translateY(-7px); }
+    64%  { transform: scale(1,1)      translateY(0); }
+    100% { transform: scale(1,1)      translateY(0); }
+}
+
+@keyframes squeeze {
+    0%   { transform: scale(0.9)}
+    10%  { transform: scale(0.9,0.8)}
+    30%  { transform: scale(0.8,0.9)}
+    50%  { transform: scale(0.95,0.9)}
+    57%  { transform: scale(0.9)}
+    64%  { transform: scale(0.9)}
+    100% { transform: scale(0.9)}
 }
