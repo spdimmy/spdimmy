@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function update() {
+      step++;
+
       if (step > phrases.length) step = 1;
 
       updateContent();
@@ -56,10 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       prevStep = step;
-      step++;
     }
 
-    update();
     triggerElement.addEventListener('click', click, false);
   })();
 
