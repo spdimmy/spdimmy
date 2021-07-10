@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function click() {
       navigator.vibrate(40);
+      dataLayer.push({'event': 'click_title'});
       update();
     }
 
