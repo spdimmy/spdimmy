@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const phrases = [
       `This's my webpage`,
       `GO!`,
-      `.!.`,
+      `<3`,
       `Log Out`,
     ];
 
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add symbols with timeout
         for (let i = 0; i < symbolsCount; i++) {
           setTimeout(() => {
-            triggerElement.textContent += ' .!.';
+            triggerElement.textContent += ' <3';
             navigator.vibrate(20);
             if (i === symbolsCount - 1) update();
           }, 30 * i);
