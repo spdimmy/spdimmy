@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useRef} from "react";
+import styles from './fun-block.module.scss';
 
 const FunBlock = () => {
+  const ref = useRef(null);
+
   useEffect(() => {
-    const triggerElement = document.querySelector(".fun-block__title");
+    const triggerElement = ref.current;
     const phrases = [`This's my webpage`, `GO!`, `<3`, `Log Out`];
 
     let step = 1;
@@ -61,8 +64,8 @@ const FunBlock = () => {
   }, []);
 
   return (
-    <section id="bounce-harm" className="fun-block">
-      <h1 className="fun-block__title fun-block__title--step-1">
+    <section id="bounce-harm" className={styles.funBlock} ref={ref}>
+      <h1 className={`${styles.funBlock_title} fun-block__title--step-1`}>
         This's my webpage
       </h1>
     </section>

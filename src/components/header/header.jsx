@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useRef} from "react";
+import styles from './header.module.scss';
 
 const Header = () => {
+  // @TODO replace refs
+  const refHeader = useRef(null);
+  const refDrag = useRef(null);
+  const refSecret = useRef(null);
+
   useEffect(() => {
-    const draggableEl = document.querySelector(".header");
-    const dragTrigger = document.querySelector(".header__drag");
-    const secretArea = document.querySelector(".header__secret");
+    const draggableEl = refHeader.current;
+    const dragTrigger = refDrag.current;
+    const secretArea = refSecret.current;
     const headerHeight = getComputedStyle(
       document.documentElement
     ).getPropertyValue("--header-height");
@@ -79,8 +85,8 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="header">
-      <div className="header__secret">
+    <header className={styles.header} ref={refHeader}>
+      <div className={styles.header_secret} ref={refSecret}>
         <div className="pokeball">
           <div className="pokeball__body">
             <svg
@@ -138,16 +144,16 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="header__container">
-        <div className="header__logo">
+      <div className={styles.header_container}>
+        <div className={styles.header_logo}>
           <a href="#">
             <img src="/favicon/favicon-32x32.png" alt="logo" title="logo" />
           </a>
         </div>
-        <div className="header__drag">
-          <span className="header__drag-angle">︾</span>
-          <span className="header__drag-angle">︾</span>
-          <span className="header__drag-angle">︾</span>
+        <div className={styles.header_drag} ref={refDrag}>
+          <span className={styles.header_dragAngle}>︾</span>
+          <span className={styles.header_dragAngle}>︾</span>
+          <span className={styles.header_dragAngle}>︾</span>
         </div>
       </div>
     </header>
