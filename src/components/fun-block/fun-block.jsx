@@ -64,8 +64,8 @@ const FunBlock = () => {
   }, []);
 
   return (
-    <section id="bounce-harm" className={styles.funBlock} ref={ref}>
-      <h1 className={`${styles.funBlock_title} fun-block__title--step-1`}>
+    <section id="bounce-harm" className={styles.funBlock}>
+      <h1 className={`${styles.funBlock_title} fun-block__title--step-1`} ref={ref}>
         This's my webpage
       </h1>
     </section>

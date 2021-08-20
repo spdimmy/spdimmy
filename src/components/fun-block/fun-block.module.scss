@@ -27,20 +27,20 @@
   }
 
   :global {
-    &__title--step-2 {
+    .fun-block__title--step-2 {
       animation: wowBounce 0.7s ease-out;
     }
 
-    &__title--step-3 {
+    .fun-block__title--step-3 {
       animation: wowBounceRotate 1.7s ease-out forwards;
     }
 
-    &__title--step-3-active {
+    .fun-block__title--step-3-active {
       color: red;
     }
 
-    &__title--step-2,
-    &__title--step-3 {
+    .fun-block__title--step-2,
+    .fun-block__title--step-3 {
       pointer-events: none;
     }
   }
