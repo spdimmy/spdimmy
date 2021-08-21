@@ -1,0 +1,15 @@
+.translate {
+  display: flex;
+
+  &_item {
+    flex-grow: 1;
+  }
+
+  label {
+    display: block;
+  }
+
+  textarea {
+    width: 100%;
+  }
+}
