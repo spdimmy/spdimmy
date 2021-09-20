@@ -63,8 +63,28 @@ const FunBlock = () => {
     triggerElement.addEventListener("click", click, false);
   }, []);
 
+  const handleTestClickButton = (e) => {
+    e.preventDefault();
+
+    window.gtag('event', 'event_button_1', {
+      'event_category': 'event_category_button_1',
+      'event_label' : 'event_label_button_1',
+    });
+  };
+
+  const handleTestClickTitle = (e) => {
+    e.preventDefault();
+
+    window.gtag('event', 'event_title_1', {
+      'event_category': 'event_category_title_1',
+      'event_label' : 'event_label_title_1',
+    });
+  };
+
   return (
     <section id="bounce-harm" className={styles.funBlock}>
+      <button onClick={handleTestClickButton}><h2>Test event Button</h2></button>
+      <div><h2 onClick={handleTestClickTitle}>Test event title</h2></div>
       <h1 className={`${styles.funBlock_title} fun-block__title--step-1`} ref={ref}>
         This's my webpage
       </h1>
