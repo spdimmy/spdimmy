@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from "react";
 import styles from './header.module.scss';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   // @TODO replace refs
@@ -146,9 +147,14 @@ const Header = () => {
       </div>
       <div className={styles.header_container}>
         <div className={styles.header_logo}>
-          <a href="#">
+          <Link to="/">
             <img src="/favicon/favicon-32x32.png" alt="logo" title="logo" />
-          </a>
+          </Link>
+        </div>
+        <div className={styles.header_menu}>
+          <Link to="/novosibirsk">
+            <h3>Novosibirsk</h3>
+          </Link>
         </div>
         <div className={styles.header_drag} ref={refDrag}>
           <span className={styles.header_dragAngle}>︾</span>

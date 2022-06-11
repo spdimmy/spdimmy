@@ -35,7 +35,8 @@
   }
 
   &_logo {
-    flex-grow: 1;
+    flex-shrink: 0;
+    margin-right: 40px;
   }
 
   & nav a {
@@ -72,6 +73,18 @@
 
   &__stick .header_drag {
     transform: scale(1, -1);
+  }
+
+  &_menu {
+    flex-grow: 1;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   @media screen and (max-width: 480px) {

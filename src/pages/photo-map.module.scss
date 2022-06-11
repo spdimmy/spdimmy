@@ -1,0 +1,94 @@
+.photoMap {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--header-height));
+
+  &_map {
+    position: relative;
+    flex-grow: 1;
+  }
+
+  &_mapCanvas {
+    height: 100%;
+  }
+
+  &_gallery {
+    flex-shrink: 0;
+    border-top: 2px solid #b5aeae;
+  }
+
+  &_gallerySliderWrapper {
+    user-select: none;
+  }
+
+  &_gallerySlide {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 5px;
+    filter: grayscale(0.5);
+    cursor: zoom-in;
+
+    &:global(.swiper-slide) {
+      width: auto;
+      height: auto;
+    }
+
+    &:hover {
+      outline: 2px inset #322222;
+      filter: grayscale(0);
+    }
+  }
+
+  &_mapMarker {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin-left: 10px;
+    padding: 3px;
+    text-align: center;
+    border: 2px solid #000;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    z-index: 1;
+    cursor: pointer;
+    background-color: rgba(204, 204, 204, 0.8);
+
+    &:hover {
+      background-color: #d7f7f7;
+    }
+  }
+
+  &_pointPopUp {
+    font-size: 16px;
+    max-width: 600px;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  &_mapResetZoom {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 3px;
+    border: 2px solid #000;
+    font-size: 20px;
+    z-index: 1;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #d7f7f7;
+    }
+  }
+}

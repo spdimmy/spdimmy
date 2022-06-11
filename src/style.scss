@@ -19,6 +19,7 @@ body {
   margin: 0;
   padding-top: var(--header-height);
   overscroll-behavior-y: contain;
+  font-family: 'problems', sans-serif;
 }
 
 body > section {
@@ -32,7 +33,6 @@ img {
 
 h1 {
   font-size: 99px;
-  font-family: 'problems', sans-serif;
   color: #444;
 }
 
