@@ -9,7 +9,7 @@ import {
 } from "../components/photoswipe/photoswipe";
 import SwiperTemplate from "../components/swiper/swiper-template";
 import config from "../env.js";
-const {gMapsKey} = config;
+const { gMapsKey } = config;
 
 const swiperConfig = {
   slidesPerView: "auto",
@@ -21,7 +21,8 @@ const swiperConfig = {
   scrollbar: {
     el: ".swiper-scrollbar",
     hide: true,
-    draggable: true },
+    draggable: true,
+  },
 };
 
 const POINTS_LIST = {
@@ -672,9 +673,7 @@ export const PhotoMap = () => {
 
     // Add walk path on map
     const centerWalkPath = new gMaps.Polyline({
-      path: walkPoints.coord.map(
-        (row) => new gMaps.LatLng(row[0], row[1])
-      ),
+      path: walkPoints.coord.map((row) => new gMaps.LatLng(row[0], row[1])),
       id: walkPoints.id,
       geodesic: true,
       strokeColor: "#FF0000",
@@ -781,7 +780,9 @@ export const PhotoMap = () => {
 
     infowindow.setContent(
       ReactDOMServer.renderToString(
-        modalContent([...cityPoints, walkPoints].find((point) => point.id === id).article)
+        modalContent(
+          [...cityPoints, walkPoints].find((point) => point.id === id).article
+        )
       )
     );
     infowindow.open(map, activeMarker);
@@ -853,7 +854,7 @@ export const PhotoMap = () => {
                       title={el.title}
                       data-size={`${el.width}x${el.height}`}
                     >
-                      <img src={el.thumbnail} alt={el.alt} />
+                      <img src={el.thumbnail} alt={el.alt} loading="lazy" />
                     </a>
                   </figure>
                 </div>

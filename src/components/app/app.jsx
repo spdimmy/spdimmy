@@ -5,6 +5,7 @@ import FunBlock from "./../fun-block/fun-block";
 import Translate from "../translate/translate";
 import { PhotoMap } from "../../pages/photo-map";
 import PhotoSwipeWrapper from "../photoswipe/photoswipe-wrapper";
+import { ShareTable } from "../share-table/share-table";
 
 const App = () => (
   <>
@@ -14,7 +15,9 @@ const App = () => (
         path="/"
         element={
           <>
-            <h1 style={{textAlign: 'center'}}>There is nothing interesting</h1>
+            <h1 style={{ textAlign: "center" }}>
+              There is nothing interesting
+            </h1>
           </>
         }
       />
@@ -37,10 +40,18 @@ const App = () => (
         }
       />
       <Route
+        path="/share-table"
+        element={
+          <>
+            <ShareTable />
+          </>
+        }
+      />
+      <Route
         path="*"
         element={
           <>
-            <h1 style={{textAlign: 'center'}}>404</h1>
+            <h1 style={{ textAlign: "center" }}>404</h1>
           </>
         }
       />
