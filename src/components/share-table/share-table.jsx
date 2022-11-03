@@ -1,17 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import { useEffect, useState } from "react";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD6Imp9EtR9cCaZp89z5WzIbue8-1DMIz8",
-  authDomain: "homepage-49923.firebaseapp.com",
-  databaseURL:
-    "https://homepage-49923-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "homepage-49923",
-  storageBucket: "homepage-49923.appspot.com",
-  messagingSenderId: "981224231748",
-  appId: "1:981224231748:web:03bcec4de2e6a06bbb3d11",
-};
+import { firebaseConfig } from "../../env.js";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
