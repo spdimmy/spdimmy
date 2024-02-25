@@ -1,12 +1,12 @@
 import "swiper/css/bundle";
-import styles from "../../pages/photo-map.module.scss";
+import styles from "../photo-map/photo-map.module.scss";
 import styles2 from "./swiper-template.module.scss";
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import SwiperCore, { Navigation, Scrollbar } from "swiper";
 SwiperCore.use([Navigation, Scrollbar]);
 window.Swiper = SwiperCore;
 
-const SwiperTemplate = ({ children, config}) => {
+const SwiperTemplate = ({ children, config }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -16,12 +16,15 @@ const SwiperTemplate = ({ children, config}) => {
 
     return () => {
       // @TODO unmount SwiperTemplate
-      console.log('unmount SwiperTemplate');
-    }
+      console.log("unmount SwiperTemplate");
+    };
   }, []);
 
   return (
-    <div ref={ref} className={`swiper swiper-modal ${styles.photoMap_gallerySlider} ${styles2.swiper}`}>
+    <div
+      ref={ref}
+      className={`swiper swiper-modal ${styles.photoMap_gallerySlider} ${styles2.swiper}`}
+    >
       <div className={`swiper-wrapper ${styles.photoMap_gallerySliderWrapper}`}>
         {React.Children.map(children, (child) => (
           <div className={`swiper-slide ${styles.photoMap_gallerySlide}`}>

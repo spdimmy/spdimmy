@@ -2,13 +2,10 @@ import React, { useEffect } from "react";
 import { useRef } from "react";
 import ReactDOMServer from "react-dom/server";
 import styles from "./photo-map.module.scss";
-import useScript from "../hooks/useScript";
-import {
-  PhotoSwipeTemplate,
-  initPhotoSwipe,
-} from "../components/photoswipe/photoswipe";
-import SwiperTemplate from "../components/swiper/swiper-template";
-import config from "../env.js";
+import useScript from "../../hooks/useScript";
+import { PhotoSwipeTemplate, initPhotoSwipe } from "../photoswipe/photoswipe";
+import SwiperTemplate from "../swiper/swiper-template";
+import config from "../../env.js";
 const { gMapsKey } = config;
 
 const swiperConfig = {
