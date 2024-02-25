@@ -1,29 +1,46 @@
+
+
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import { getDatabase, ref, onValue } from "firebase/database";
 import { useEffect, useState } from "react";
 import { firebaseConfig } from "../../env.js";
+import { User } from "./user/user";
+import { Order } from "./order/order";
+import styles from "./share-table.module.scss";
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// Initialize Realtime Database and get a reference to the service
-const database = getDatabase(app);
-const starCountRef = ref(database, "users");
+export const db = {
+  instance: getDatabase(app),
+  baseUrl: "/",
+  dbTableList: "tableList",
+  dbOrderList: "orderList",
+  dbUserList: "userList",
+};
+const baseRef = ref(db.instance, db.baseUrl);
 
 export const ShareTable = () => {
-  const [state, setState] = useState("loading...");
-
-  function writeUserData() {
-    set(ref(database, "users"), "test_string");
-  }
-
-  // writeUserData();
+  
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    onValue(starCountRef, (snapshot) => {
+    document.title = "Share Table";
+    document.head.children.description.content = "Share a table with friends";
+
+    onValue(baseRef, (snapshot) => {
       const data = snapshot.val();
-      setState(data);
+
+      if (data) {
+        setData(data);
+      } else {
+        setData(false);
+      }
     });
   }, []);
 
-  return <h1>Firebase test and {state}</h1>;
+  return (
+    <div className={styles.shareTable}>
+      <User data={data} db={db} />
+      <Order data={data} db={db} />
+    </div>
+  );
 };

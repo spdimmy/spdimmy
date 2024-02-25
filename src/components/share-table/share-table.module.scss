@@ -1,0 +1,25 @@
+.shareTable {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 50px 10px;
+
+  h1 {
+    text-align: center;
+  }
+
+  input,
+  button {
+    border: 1px solid #3a3a3a;
+    box-shadow: 2px 2px 2px 0px #9d9d9d;
+    background-color: #fff;
+    border-radius: 3px;
+  }
+
+  button {
+    cursor: pointer;
+
+    &:active {
+      background-color: #f4f4f4;
+    }
+  }
+}
